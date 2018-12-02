@@ -1,0 +1,77 @@
+\documentclass[12pt,twoside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[l]{Rishi Parmar}
+\fancyhead[R]{\hyperref[toc]{Table of Contents}}
+% \renewcommand{\footrulewidth}{0.4pt}
+
+% Make chapters use my footer
+% \patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+\usepackage[style=authoryear,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+\title{Thesis sdgsgsdgs}
+\author{Author Name}
+\date{Day Month Year}
+
+\begin{document}
+
+\input{titlepage}
+
+\input{abstract}
+
+% \chapter*{Dedication}
+% To mum and dad
+
+% \chapter*{Declaration}
+% I declare that..
+
+% \chapter*{Acknowledgements}
+% I want to thank...
+
+\tableofcontents
+\label{toc}
+\addtocontents{toc}{~\hfill\textbf{Page}\par}
+
+% \listoffigures
+
+% \listoftables
+
+\chapter{Introduction}
+\input{chapters/introduction}
+
+\chapter{Chapter Two Title}
+\input{chapters/chapter02}
+
+\chapter{Chapter Three Title}
+\input{chapters/chapter03}
+
+\chapter{Chapter Four Title}
+\input{chapters/chapter04}
+
+\chapter{Conclusion}
+\input{chapters/conclusion}
+
+\appendix
+\chapter{Appendix Title}
+\input{chapters/appendix}
+
+\printbibliography
+
+\end{document}
