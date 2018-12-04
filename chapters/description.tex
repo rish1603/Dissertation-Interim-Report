@@ -1,0 +1,62 @@
+\section{Ability to Query words}
+
+This will be the most basic and perhaps most important piece of functionality. It will allow the user to search for a word that they want to learn. The application will then use the Oxford Dictionary API to retrieve information about the word which will include:
+\begin{itemize}
+    \item The definition(s)
+    \item Information about the root of the word
+    \item Etymology--- Information on the origin of the word
+    \item Example sentences for each sense/meaning
+\end{itemize}
+
+I would like to offer the capability for the user to control what data they get shown, although this is by no means a priority. In addition to the data obtained from Oxford Dictionary, I will always display the Synsets from the WordNet\textsuperscript{\textregistered} database. 
+\\
+Lastly, I will include example sentences from open-source books and/or internet sources. These sentence will be put through a sentence-sorting algorithm, which is perhaps the main focus for the project. 
+
+\section{Sentence-Sorting Algorithm}
+
+I haven't yet managed to find any examples of such an algorithm. Put simply, this algorithm will be based on a set of rules that denote what makes a `good example sentence'. Later in this report, there is an update on the rules that have been decided thus far. The algorithm will take a list or array of sentences as its input, and then assign a score for each sentence that estimates how `useful' the example sentence is for the word in question. 
+
+\section{User Quiz}
+
+The quiz will be the mechanism by which the user can test their knowledge of a word. This is useful as it will allow the app to track the user's progress and give an empirical figure for how many words they have learned over time. For the purpose of the quiz, I will use a simplistic notion of what it means to `learn' a word. The assumption being made is as follows: If a user knows the definition of a word--- as well as how the word can be used in context--- then we conclude that the user has `learned' the word. In reality, there are more branches of word knowledge than just meaning and context--- something I will be touching on later in this report. \\
+
+There will be two types of quiz, both of which will be multiple choice. The first will test the user of their knowledge of a definition: \\
+
+Please select the correct definition for the word \emph{scrupulous}
+
+\begin{itemize}
+\item[$\square$] Not certain or fixed; provisional.
+\item[$\boxtimes$] (of a person or process) diligent, thorough, and extremely attentive to details.
+\item[$\square$] Shockingly bad or excessive.
+\item[$\square$] Not deterred by danger or pain; brave.
+\item[$\square$] Feeling or displaying the need for food.
+\end{itemize}
+
+Note that all of the examples above are adjectives, like the word itself. The second test type will assess the user's knowledge of the word using context:\\
+
+Identify which gap contains the word \emph{scrupulous}:
+
+\begin{itemize}
+\item[$\square$] I was feeling ravenously \rule{2cm}{0.02cm}
+\item[$\square$] her \rule{2cm}{0.02cm} human rights work
+\item[$\boxtimes$] the research has been carried out with \rule{2cm}{0.02cm} attention to detail
+\item[$\square$] It was a kind of empire built on very provisional and \rule{2cm}{0.02cm} things that might happen.
+\item[$\square$] The visitors, too, were in a \rule{2cm}{0.02cm} mood.
+\end{itemize}
+
+This context-based quiz type will be heavily reliant on the sentence-sorting algorithm. The `actual' sentence needs to emit some sort of clue about the word in order for this quiz to be useful. In the scenario above, the word `detail' is the most important clue.  The approach above is one that --- as far as I know --- has never been used in the software world. The quality of this quiz will provide a good indication as to how successful the project is as a whole. \\
+
+There is a significant chance that the user will learn the word in question in the process of completing the quiz.  In a scenario where the user doesn't remember the word they're being quizzed on, the task will then involve inferring from context. Inferring from context has historically been a prevalent method used in vocabulary instruction. `The considerable research on textual inferencing shows that it can be a major way of acquiring new vocabulary.’ (\cite{schmitt1997vocabulary}). This opportunity to learn the word in the quiz itself relies on two requirements being met:
+
+\begin{enumerate}
+    \item The correct sentence must contain relevant clues--- this will be need to be achieved by the sentence-sorting component.
+    \item The incorrect sentences must be sufficiently distinguished from the correct sentence. In other words, if the word in question is `dog', a sentence for a similar word such as `wolf' will likely create confusion and would lead to bad results.
+\end{enumerate}
+
+\section{MyWords Progression Screen}
+
+On this page, the user will be able to see the number of words that they have learned over time. This will likely take the form of a graph. The advantage of tracking this data is that it allows user's to set targets and create goals. The effectiveness of goal-setting is something that is well documented. (\cite{locke2000motivation}) assessed more than 500 studies on goal setting from all over the world. He found that around 90\% of goal-setting studies had positive results. Consequently, it is imperative that MyWords has the option to set user goals. An example goal might be to learn ten words every week. The app could send push notifications to user's to update them on how they are faring with this objective.
+
+\section{User Trial}
+
+The last objective is to run a user evaluation to test whether or not the application achieves its purpose of improving word acquisition and retention.  In short, this will be a small trial with a control group that uses a traditional dictionary look-up mechanism.The users will be shown a list of around ten low-frequency words that they are unlikely to have seen before.  They will be asked if they recognise these words.Any words they do recognise will be replaced with words that they don’t.  They will then use the application to try and learn these words, and use the quiz feature after doing so.  We will then test their knowledge of these words the next day, which will suggest whether or not they have retained the knowledge of the word.
